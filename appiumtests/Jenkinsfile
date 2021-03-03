@@ -24,17 +24,12 @@ pipeline {
                 sh "appium --port ${APPIUM_PORT}"
                 
             }
-        }
-        stage('Deploy') {
-            steps {
-                echo "Deploying...."
-            }
-        }
-        post {
-            always{
-                echo "Stop appium server"
-                sh "kill \$(lsof -t -i :${APPIUM_PORT})"
-            }
+	        post {
+	            always { 
+	                echo "Stop appium server"
+	                sh "kill \$(lsof -t -i :${APPIUM_PORT})"
+	            }
+	        }
        }
     }
 }
