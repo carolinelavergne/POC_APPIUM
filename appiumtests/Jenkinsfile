@@ -1,13 +1,12 @@
 pipeline {
-	agent any
-	stages {
-		stage("Npm package installation") {
-			node {
-			  echo "test"
-			}
-			steps {
-				bat label: 'install NPM package', script: 'npm install'
-			}
-		}		
-	}
+        stages {
+            stage('upload-to-browserstack'){
+                steps{
+                    browserstack(credentialsId: 'e5ebafbb-b0ac-4356-9f5f-fe3acd7f553a'){   
+                 		echo "BrowserStack"
+                 	}
+                }
+            }
+        }
+    }
 }
