@@ -1,11 +1,10 @@
 pipeline {
-        stages {
-            stage('upload-to-browserstack'){
-                steps{
-                    browserstack(credentialsId: 'e5ebafbb-b0ac-4356-9f5f-fe3acd7f553a'){   
-                 		echo "BrowserStack"
-                 	}
-                }
+    stages {
+        stage('upload-to-browserstack'){
+            steps{
+                browserstack(credentialsId: 'e5ebafbb-b0ac-4356-9f5f-fe3acd7f553a'){   
+             		echo "BrowserStack"
+             	}
             }
         }
     }
