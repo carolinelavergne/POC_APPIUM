@@ -1,4 +1,7 @@
 pipeline {
+	node {
+	  echo "qwerty"
+	}
 	stages {
 		stage('upload-to-browserstack') {
 			steps {
