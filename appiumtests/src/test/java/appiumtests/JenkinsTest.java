@@ -52,7 +52,7 @@ public class JenkinsTest {
 		// JENKINS
         caps.setCapability("name", "BStack-[Java] Sample Test"); // test buildName
         caps.setCapability("build", buildName); // CI/CD job name using BROWSERSTACK_BUILD_NAME env variable
-        caps.setCapability("browserstack.local", browserstackLocal);
+        caps.setCapability("browserstack.local", true);
         caps.setCapability("browserstack.localIdentifier", browserstackLocalIdentifier);
         
         caps.setCapability("app", app);
