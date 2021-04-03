@@ -18,9 +18,23 @@ import junit.framework.TestCase;
 public class BrowserStackTest extends TestCase {
 	
 	public static AndroidDriver<AndroidElement> driver = null;
-	static String username = "caroline200";
-	static String accessKey = "PgRQjroW26yWGyyxrNan";
+	static String username = "caroline201";
+	static String accessKey = "8op9B2aALi1qT85NPMBu";
     private static final String APP = "bs://4036699cabbea52e1baf23af60dff0c84bf631db";
+    
+    @Before
+    public void setUp() throws Exception {
+        DesiredCapabilities caps = new DesiredCapabilities();
+
+        caps.setCapability("deviceName", "Xiaomi Redmi Note 7");
+        caps.setCapability("os_version","9.0");
+    	
+        caps.setCapability("appActivity", "io.cloudgrey.the_app.MainActivity");
+		
+        caps.setCapability("app", APP);
+        driver = new AndroidDriver<AndroidElement>(new URL("https://"+username+":"+accessKey+"@hub-cloud.browserstack.com/wd/hub"), caps);
+    }
+    
     
     @Test 
     public void testEchoBox() {
@@ -57,23 +71,11 @@ public class BrowserStackTest extends TestCase {
     	
     	assert(loginText.getText().contains("alice"));
     }
-    @Before
-    public void setUp() throws Exception {
-        DesiredCapabilities caps = new DesiredCapabilities();
-
-        caps.setCapability("deviceName", "Xiaomi Redmi Note 7");
-        caps.setCapability("os_version","9.0");
-    	
-        caps.setCapability("appActivity", "io.cloudgrey.the_app.MainActivity");
-		
-        caps.setCapability("app", APP);
-        driver = new AndroidDriver<AndroidElement>(new URL("https://"+username+":"+accessKey+"@hub-cloud.browserstack.com/wd/hub"), caps);
-		
-    }
+   
     @After
     public void tearDown() {
         if (driver != null) {
-        	System.out.println("Fin!");
+        	System.out.println("Fin BrowserStack!");
             driver.quit();
         }
     }
