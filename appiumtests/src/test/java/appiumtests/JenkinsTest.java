@@ -5,6 +5,7 @@ import java.net.URL;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -40,7 +41,26 @@ public class JenkinsTest {
     	
     	wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Hello world")));
     }
+    @Test
+    public void testLoginScreen() {
+    	WebDriverWait wait = new WebDriverWait(driver, 10);
+    	WebElement screen = wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Login Screen")));
+    	screen.click();
+    
+    	WebElement username = wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("username")));
 
+    	username.sendKeys("alice");
+    	WebElement password = driver.findElement(MobileBy.AccessibilityId("password"));
+    	password.sendKeys("mypassword");
+    	WebElement login = driver.findElement(MobileBy.AccessibilityId("loginBtn"));
+    	login.click();
+    	
+    	WebElement loginText = wait.until(ExpectedConditions.presenceOfElementLocated(
+    			MobileBy.xpath("//android.widget.TextView[contains(@text, 'You are logged in')]")));
+    	
+    	assert(loginText.getText().contains("alice"));
+    }
+    
     @Before
     public void setUp() throws Exception {
     	System.out.println("TEST JENKINS");
