@@ -27,6 +27,7 @@ public class JenkinsTest {
     @Test 
     public void testEchoBox() {
 
+    	System.out.println("TEST JENKINS");
     	WebDriverWait wait = new WebDriverWait(driver, 10);
     	AndroidElement echoBox = (AndroidElement) wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Echo Box")));
     	echoBox.click();
@@ -42,6 +43,7 @@ public class JenkinsTest {
 
     @Before
     public void setUp() throws Exception {
+    	System.out.println("TEST JENKINS");
         DesiredCapabilities caps = new DesiredCapabilities();
 
         caps.setCapability("deviceName", "Xiaomi Redmi Note 7");
@@ -62,7 +64,7 @@ public class JenkinsTest {
     @After
     public void tearDown() {
         if (driver != null) {
-        	System.out.println("Fin!");
+        	System.out.println("Fi JenkinsTest!");
             driver.quit();
         }
     }

@@ -55,7 +55,7 @@ public class LambdaTest {
 		driver.findElement(By.id("sampletodotext")).sendKeys("Yey, Let's add it to list");
 		driver.findElement(By.id("addbutton")).click();*/
 		driver.quit();	
-		System.out.println("fin");	
+		System.out.println("fin LambdaTests");	
 	}
 
 }
