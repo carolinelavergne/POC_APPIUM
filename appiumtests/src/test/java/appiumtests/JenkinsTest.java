@@ -27,8 +27,7 @@ public class JenkinsTest {
     
     @Test 
     public void testEchoBox() {
-
-    	System.out.println("TEST JENKINS");
+    	System.out.println("testEchoBox - Début");
     	WebDriverWait wait = new WebDriverWait(driver, 10);
     	AndroidElement echoBox = (AndroidElement) wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Echo Box")));
     	echoBox.click();
@@ -40,9 +39,11 @@ public class JenkinsTest {
     	save.click();
     	
     	wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Hello world")));
+    	System.out.println("testEchoBox - Fin");
     }
     @Test
     public void testLoginScreen() {
+    	System.out.println("testLoginScreen - Début");
     	WebDriverWait wait = new WebDriverWait(driver, 10);
     	WebElement screen = wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Login Screen")));
     	screen.click();
@@ -59,11 +60,12 @@ public class JenkinsTest {
     			MobileBy.xpath("//android.widget.TextView[contains(@text, 'You are logged in')]")));
     	
     	assert(loginText.getText().contains("alice"));
+    	System.out.println("testLoginScreen - Fin");
     }
     
     @Before
     public void setUp() throws Exception {
-    	System.out.println("TEST JENKINS");
+    	System.out.println("setUp - Début");
         DesiredCapabilities caps = new DesiredCapabilities();
 
         caps.setCapability("deviceName", "Xiaomi Redmi Note 7");
@@ -74,15 +76,14 @@ public class JenkinsTest {
 		// JENKINS
         caps.setCapability("name", "BStack-[Java] Sample Test"); // test buildName
         caps.setCapability("build", buildName); // CI/CD job name using BROWSERSTACK_BUILD_NAME env variable
-        System.out.println(buildName);
         caps.setCapability("browserstack.local", true);
         caps.setCapability("browserstack.localIdentifier", browserstackLocalIdentifier);
         
         caps.setCapability("app", app);
         driver = new AndroidDriver<AndroidElement>(new URL("https://"+username+":"+accessKey+"@hub-cloud.browserstack.com/wd/hub"), caps);
-        System.out.println(driver);
-		
+    	System.out.println("setUp - Fin");
     }
+    
     @After
     public void tearDown() {
         if (driver != null) {
