@@ -54,17 +54,19 @@ public class JenkinsTest {
 		// JENKINS
         caps.setCapability("name", "BStack-[Java] Sample Test"); // test buildName
         caps.setCapability("build", buildName); // CI/CD job name using BROWSERSTACK_BUILD_NAME env variable
+        System.out.println(buildName);
         caps.setCapability("browserstack.local", true);
         caps.setCapability("browserstack.localIdentifier", browserstackLocalIdentifier);
         
         caps.setCapability("app", app);
         driver = new AndroidDriver<AndroidElement>(new URL("https://"+username+":"+accessKey+"@hub-cloud.browserstack.com/wd/hub"), caps);
+        System.out.println(driver);
 		
     }
     @After
     public void tearDown() {
         if (driver != null) {
-        	System.out.println("Fi JenkinsTest!");
+        	System.out.println("Fin JenkinsTest!");
             driver.quit();
         }
     }
